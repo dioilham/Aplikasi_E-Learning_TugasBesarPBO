@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Kelas {
 
+    private String kode_kelas;
     private String nama_kelas;
     private String jurusan;
     private int jmlh_mahasiswa;
@@ -23,10 +24,11 @@ public class Kelas {
     private ArrayList<Mahasiswa> anggota;
     private ArrayList<Tugas> daftar_tugas;
 
-    public Kelas(String nama_kelas, String jurusan) {
+    public Kelas(String nama_kelas, String kode_kelas, String jurusan) {
         this.nama_kelas = nama_kelas;
+        this.kode_kelas = kode_kelas;
         this.jurusan = jurusan;
-        this.jmlh_mahasiswa = 25;
+        this.daftar_tugas = new ArrayList<Tugas>();
     }
 
     public String getNamaKelas() {
@@ -41,17 +43,45 @@ public class Kelas {
         this.mata_kuliah = mata_kuliah;
     }
 
+    public MataKuliah getMata_kuliah() {
+        return mata_kuliah;
+    }
+
+    public String getKode_kelas() {
+        return kode_kelas;
+    }
+
+    public void setKode_kelas(String kode_kelas) {
+        this.kode_kelas = kode_kelas;
+    }
+
     public void setDosenPengajar(Dosen dosen_pengajar) {
         this.dosen_pengajar = dosen_pengajar;
     }
 
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+    public Tugas getTugas() {
+        return tugas;
+    }
+    
+    public Tugas getTugas(int index){
+        return daftar_tugas.get(index);
+    }
+
+    public void setTugas(Tugas tugas) {
+        this.tugas = tugas;
+    }
+
     public void addMahasiswa(Mahasiswa mhs) {
         if (isAnggotaFull() == false) {
-            for (int i = 0; i <= anggota.size(); i++) {
-                if (anggota.get(i) != null) {
-                    anggota.set(i, mhs);
-                }
-            }
+            anggota.add(mhs);
         } else {
             System.out.println("Anggot kelas penuh!");
         }
@@ -87,6 +117,23 @@ public class Kelas {
         }
         return -1;
     }
+    
+    public boolean isTugasExist(String judul_tugas){
+        for(Tugas t : daftar_tugas){
+            if(t.getNamaTugas().equals(judul_tugas)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public ArrayList<Tugas> getDaftarTugas(){
+        return daftar_tugas;
+    }
+    
+//    public Tugas getTugas(){
+//        return null;
+//    }
 
     public void deleteTugas(int index) {
         if (index == -1) {
@@ -101,11 +148,6 @@ public class Kelas {
             return true;
         }
         return false;
-    }
-
-    //Output 
-    public void printAllTugas() {
-
     }
 
 }

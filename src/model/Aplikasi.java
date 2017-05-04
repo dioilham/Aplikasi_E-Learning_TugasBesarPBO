@@ -4,8 +4,9 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
+import database.Database;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +18,21 @@ public class Aplikasi {
     private ArrayList<MataKuliah> daftarMatakuliah;
     private ArrayList<Dosen> daftarDosen;
     private ArrayList<Mahasiswa> daftarMahasiswa;
+    private Database db;
 
-    public Aplikasi(){
+    
+    
+    public Aplikasi(Database db){
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();
         daftarMahasiswa = new ArrayList<>();
+        this.db = db;
+        
+        load(db.loadMatakuliah(), db.loadAkunDosen(), db.loadMahasiswa());
+//        this.daftarMahasiswa = d.loadAkunMahasiswa();
     }
     
-    public void load(ArrayList<MataKuliah> daftarMataKuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
+    public void load(ArrayList<MataKuliah> daftarMatakuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
         this.daftarMatakuliah = daftarMatakuliah;
         this.daftarDosen = daftarDosen;
         this.daftarMahasiswa = daftarMahasiswa;
@@ -33,30 +41,35 @@ public class Aplikasi {
     //add by Object
     public void addMataKuliah(MataKuliah mk) {
         daftarMatakuliah.add(mk);
+        db.insertMataKuliah(mk);
+        
     }
 
     public void addDosen(Dosen d) {
         daftarDosen.add(d);
+        db.insertDosen(d);
     }
 
     public void addMahasiswa(Mahasiswa m) {
         daftarMahasiswa.add(m);
+        db.insertMahasiswa(m);
     }
 
     //add by Constructor
     public void addMataKuliah(String nama_mk, String kode_mk) {
         daftarMatakuliah.add(new MataKuliah(nama_mk, kode_mk));
+        
     }
 
-    public void addDosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
-        daftarDosen.add(new Dosen(nama, tgl_lahir, tmpt_lahir, gender, NIP));
+    public void addDosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String gender, String username, String password) {
+        daftarDosen.add(new Dosen(nama, NIP, tgl_lahir, tmpt_lahir, gender, username, password));
     }
 
-    public void addMahasiswa(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIM) {
-        daftarMahasiswa.add(new Mahasiswa(nama, tgl_lahir, tmpt_lahir, gender, NIM));
+    public void addMahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String gender, String username, String password) {
+        daftarMahasiswa.add(new Mahasiswa(nama, NIM, tgl_lahir, tmpt_lahir, gender, username, password));
     }
 
-    //searching by index
+    //searching return index
     public int searchDosen(String NIP) {
         for (int i = 0; i < daftarDosen.size(); i++) {
             if (daftarDosen.get(i).getNIP().equals(NIP)) {
@@ -83,7 +96,81 @@ public class Aplikasi {
         }
         return -1;
     }
+    
+    //searching unique kode_kelas
+    public boolean isKodeKelasExist(String kode_kelas){
+        for(Dosen d : daftarDosen){
+            for(Kelas k : d.getDaftarKelas()){
+                if(k.getKode_kelas().equals(kode_kelas)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    //searching unique username
+    public boolean isUserMahasiswaExist(String username){
+        for(Mahasiswa m : daftarMahasiswa){
+            if(m.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean isUserDosenExist(String username){
+        for(Dosen d : daftarDosen){
+            if(d.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique NIM for Mahasiswa
+    public boolean isNIMMahasiswaExist(String NIM){
+        for(Mahasiswa m : daftarMahasiswa){
+            if(m.getNIM().equals(NIM)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique NIP for Dosen
+    public boolean isNIPDosenExist(String NIP){
+        for(Dosen d : daftarDosen){
+            if(d.getNIP().equals(NIP)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique kode_mk for Matakuliah
+    public boolean isKodeMKExist(String kode_mk){
+        for(MataKuliah mk : daftarMatakuliah){
+            if(mk.getKodeMK().equals(kode_mk)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    //getter Object by index
+    public MataKuliah getMatakuliah(int index){
+        return daftarMatakuliah.get(index);
+    }
+    
+    public Dosen getDosen(int index){
+        return daftarDosen.get(index);
+    }
+    
+    public Mahasiswa getMahasiswa(int index){
+        return daftarMahasiswa.get(index);
+    }
+    
     //getter Object by parameter
     public MataKuliah getMataKuliah(String kode_mk) {
         for (int i = 0; i < daftarMatakuliah.size(); i++) {
@@ -111,10 +198,23 @@ public class Aplikasi {
         }
         return null;
     }
+    
+    public Kelas getKelas(String kode_kelas){
+        for(Dosen d : daftarDosen){
+            for(Kelas k : d.getDaftarKelas()){
+                if(k.getKode_kelas().equals(kode_kelas)){
+                    return k;
+                }
+            }
+        }
+        return null;
+    }
 
     //delete Object by Index
     public void deleteMataKuliah(int index) {
         daftarMatakuliah.remove(index);
+       
+        
     }
 
     public void deleteDosen(int index) {

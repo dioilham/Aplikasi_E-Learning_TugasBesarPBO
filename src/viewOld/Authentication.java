@@ -4,7 +4,12 @@
  * M. Widadio Ilham	  | 1301154360
  * Afra W. D.	  | 1301150432
  */
-package view;
+package viewOld;
+
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+
 /**
  *
  * @author Muhammad Maulud H R
@@ -40,6 +45,8 @@ public class Authentication extends javax.swing.JFrame {
         headerSignUp = new javax.swing.JLabel();
         lbl_Nama = new javax.swing.JLabel();
         tfNamaSU = new javax.swing.JTextField();
+        lbl_NIM = new javax.swing.JLabel();
+        tfNIMSU = new javax.swing.JTextField();
         lbl_TTL = new javax.swing.JLabel();
         tfTempatLahirSU = new javax.swing.JTextField();
         tglHari = new javax.swing.JComboBox<>();
@@ -136,7 +143,7 @@ public class Authentication extends javax.swing.JFrame {
                 .addComponent(underlinePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         panelReg.setBackground(new java.awt.Color(0, 153, 255));
@@ -152,6 +159,14 @@ public class Authentication extends javax.swing.JFrame {
         tfNamaSU.setFont(new java.awt.Font("Myriad Pro", 0, 14)); // NOI18N
         tfNamaSU.setForeground(new java.awt.Color(51, 51, 51));
         tfNamaSU.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lbl_NIM.setFont(new java.awt.Font("Myriad Pro", 0, 20)); // NOI18N
+        lbl_NIM.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_NIM.setText("NIM");
+
+        tfNIMSU.setFont(new java.awt.Font("Myriad Pro", 0, 14)); // NOI18N
+        tfNIMSU.setForeground(new java.awt.Color(51, 51, 51));
+        tfNIMSU.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lbl_TTL.setFont(new java.awt.Font("Myriad Pro", 0, 20)); // NOI18N
         lbl_TTL.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,46 +220,50 @@ public class Authentication extends javax.swing.JFrame {
         panelRegLayout.setHorizontalGroup(
             panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegLayout.createSequentialGroup()
-                        .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRegLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerSignUp)
+                    .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRegLayout.createSequentialGroup()
+                            .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbl_Alamat)
+                                .addComponent(lbl_TTL)
+                                .addComponent(lbl_UsernameSU)
+                                .addComponent(lbl_PasswordSU)
                                 .addComponent(lbl_Nama)
-                                .addGap(180, 180, 180))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegLayout.createSequentialGroup()
-                                .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_Alamat)
-                                    .addComponent(lbl_TTL)
-                                    .addComponent(headerSignUp)
-                                    .addComponent(lbl_UsernameSU)
-                                    .addComponent(lbl_PasswordSU))
-                                .addGap(47, 47, 47)))
-                        .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNamaSU, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelRegLayout.createSequentialGroup()
-                                .addComponent(tfTempatLahirSU)
-                                .addGap(18, 18, 18)
-                                .addComponent(tglHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tglBulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tglTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfUsernameSU, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPasswordSU, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addComponent(lbl_NIM))
+                            .addGap(47, 47, 47)
+                            .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfNamaSU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelRegLayout.createSequentialGroup()
+                                        .addComponent(tfTempatLahirSU)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tglHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tglBulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tglTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfUsernameSU, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfPasswordSU, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfNIMSU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         panelRegLayout.setVerticalGroup(
             panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRegLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(83, 83, 83)
                 .addComponent(headerSignUp)
-                .addGap(39, 39, 39)
+                .addGap(51, 51, 51)
                 .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Nama)
                     .addComponent(tfNamaSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNIMSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_NIM))
                 .addGap(18, 18, 18)
                 .addGroup(panelRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_TTL)
@@ -266,7 +285,7 @@ public class Authentication extends javax.swing.JFrame {
                     .addComponent(tfPasswordSU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,8 +299,11 @@ public class Authentication extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addComponent(panelReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -303,39 +325,87 @@ public class Authentication extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Authentication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Authentication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Authentication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Authentication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    public void tambahAksi(ActionListener e) {
+        btnLogin.addActionListener(e);
+        btnRegister.addActionListener(e);
+    }
+    
+    public Button getBtnLogin() {
+        return btnLogin;
+    }
+    
+    public Button getBtnRegister() {
+        return btnRegister;
+    }
+    
+    public String getUsername() {
+        return tfUsername.getText();
+    }
+    
+    public String getPassword() {
+        return jPasswordField1.getText();
+    }
+    
+    public String getNama() {
+        return tfNamaSU.getText();
+    }
+    
+    public String getNIm() {
+        return tfNIMSU.getText();
+    }
+    
+    public String getTempat() {
+        return tfTempatLahirSU.getText();
+    }
+    
+    public String getAlamat() {
+        return jTextPane1.getText();
+    }
+    
+    public String getUsernameReg() {
+        return tfUsernameSU.getText();
+    }
+    
+    public String getPasswordReg() {
+        return tfPasswordSU.getText();
+    }
+    
+    public int getTanggal() {
+        return (tglHari.getSelectedIndex() + 1);
+    }
+    
+    public String getBulan() {
+        if (tglBulan.getSelectedIndex() == 0) {
+            return "Januari";
+        } else if (tglBulan.getSelectedIndex() == 1) {
+            return "Februari";
+        } else if (tglBulan.getSelectedIndex() == 2) {
+            return "Maret";
+        } else if (tglBulan.getSelectedIndex() == 3) {
+            return "April";
+        } else if (tglBulan.getSelectedIndex() == 4) {
+            return "Mei";
+        } else if (tglBulan.getSelectedIndex() == 5) {
+            return "Juni";
+        } else if (tglBulan.getSelectedIndex() == 6) {
+            return "Juli";
+        } else if (tglBulan.getSelectedIndex() == 7) {
+            return "Agustus";
+        } else if (tglBulan.getSelectedIndex() == 8) {
+            return "September";
+        } else if (tglBulan.getSelectedIndex() == 9) {
+            return "Oktober";
+        } else if (tglBulan.getSelectedIndex() == 10) {
+            return "November";
+        } else if (tglBulan.getSelectedIndex() == 11) {
+            return "Desember";
+        } else {
+            return null;
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Authentication().setVisible(true);
-            }
-        });
+    }
+    
+    public int getTahun() {
+        return 1990 + tglTahun.getSelectedIndex();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -346,6 +416,7 @@ public class Authentication extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbl_Alamat;
+    private javax.swing.JLabel lbl_NIM;
     private javax.swing.JLabel lbl_Nama;
     private javax.swing.JLabel lbl_Password;
     private javax.swing.JLabel lbl_PasswordSU;
@@ -354,6 +425,7 @@ public class Authentication extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_UsernameSU;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelReg;
+    private javax.swing.JTextField tfNIMSU;
     private javax.swing.JTextField tfNamaSU;
     private javax.swing.JTextField tfPasswordSU;
     private javax.swing.JTextField tfTempatLahirSU;
